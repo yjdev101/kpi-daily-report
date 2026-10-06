@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: kpi-daily-report
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5433/kpi}
+    username: ${DB_USERNAME:kpi}
+    password: ${DB_PASSWORD:kpi}
+
+kpi:
+  zone: Asia/Seoul
+  schedule:
+    enabled: true
+    cron: "0 0 7 * * *"   # 매일 07:00 (kpi.zone 기준)에 어제 리포트
+  slack:
+    # webhook-url: ${SLACK_WEBHOOK_URL}   # 설정하면 Slack으로도 보냄
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
